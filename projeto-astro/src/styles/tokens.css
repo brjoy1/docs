@@ -1,0 +1,75 @@
+/* =====================================================
+   DESIGN TOKENS - BASE NOBRE
+   Sistema de design unificado e escalável
+   ===================================================== */
+
+:root {
+  /* === CORES PRIMÁRIAS === */
+  --base-nobre-primary: #F4D03F;        /* Dourado principal */
+  --base-nobre-primary-dark: #D4AF37;   /* Dourado escuro */
+  --base-nobre-accent: #FFC107;         /* Acento amarelo */
+  --base-nobre-secondary: #1A1A1A;      /* Texto escuro em botões */
+
+  /* === CORES DE SUPERFÍCIE === */
+  --base-nobre-bg-light: #FFFFFF;
+  --base-nobre-surface: rgba(255, 255, 255, 0.95);
+  --base-nobre-border: rgba(244, 208, 63, 0.15);
+
+  /* === CORES DE TEXTO === */
+  --base-nobre-ink: #2C3E50;            /* Texto principal */
+  --base-nobre-muted: #5D6D7E;          /* Texto secundário */
+  --base-nobre-gold: #B8860B;           /* Dourado escuro para números */
+
+  /* === CORES DE BOTÃO === */
+  --base-nobre-button-hover: #E8C733;
+
+  /* === GRADIENTES === */
+  --base-nobre-gradient-gold: linear-gradient(135deg, var(--base-nobre-primary), var(--base-nobre-accent));
+  --base-nobre-gradient-bg: linear-gradient(180deg, var(--base-nobre-bg-light) 0%, #F1F3F4 50%, #E9ECEF 100%);
+
+  /* === SOMBRAS === */
+  --base-nobre-shadow-sm: 0 2px 8px rgba(244, 208, 63, 0.15);
+  --base-nobre-shadow-md: 0 4px 16px rgba(244, 208, 63, 0.25);
+  --base-nobre-shadow-lg: 0 6px 24px rgba(0, 0, 0, 0.08);
+  --base-nobre-shadow-hover: 0 6px 20px rgba(244, 208, 63, 0.35);
+
+  /* === TIPOGRAFIA === */
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* === ESPAÇAMENTO === */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* === BORDAS === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* === TRANSIÇÕES === */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s ease;
+
+  /* === Z-INDEX === */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-modal: 1000;
+  --z-tooltip: 1100;
+}
+
+/* === DARK MODE (OPCIONAL) === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --base-nobre-bg-light: #1A1A1A;
+    --base-nobre-surface: rgba(30, 30, 30, 0.95);
+    --base-nobre-ink: #E5E7EB;
+    --base-nobre-muted: #9CA3AF;
+  }
+}

@@ -1,0 +1,104 @@
+---
+/**
+ * Componente Button - Base Nobre
+ * Botão reutilizável com variantes e ícones
+ */
+
+interface Props {
+  variant?: 'primary' | 'secondary';
+  icon?: string;
+  href?: string;
+  onClick?: string;
+  dataTrack?: string;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  icon,
+  href = '#',
+  onClick,
+  dataTrack,
+  class: className = ''
+} = Astro.props;
+
+const variantClass = `base-nobre-btn-hero-${variant}`;
+---
+
+<a
+  href={href}
+  class:list={['base-nobre-btn-hero', variantClass, className]}
+  onclick={onClick}
+  data-base-nobre-track={dataTrack}
+>
+  {icon && <span class="material-symbols-outlined">{icon}</span>}
+  <slot />
+</a>
+
+<style>
+  .base-nobre-btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .base-nobre-btn-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left var(--transition-slow);
+  }
+
+  .base-nobre-btn-hero:hover::before {
+    left: 100%;
+  }
+
+  .base-nobre-btn-hero-primary {
+    background: var(--base-nobre-gradient-gold);
+    color: var(--base-nobre-secondary);
+    box-shadow: var(--base-nobre-shadow-md);
+    animation: base-nobre-fade-up 1s ease 0.8s both;
+  }
+
+  .base-nobre-btn-hero-primary:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: var(--base-nobre-shadow-hover);
+    background: linear-gradient(135deg, var(--base-nobre-button-hover), var(--base-nobre-primary));
+  }
+
+  .base-nobre-btn-hero-secondary {
+    background: var(--base-nobre-surface);
+    color: var(--base-nobre-ink);
+    border: 2px solid var(--base-nobre-border);
+    animation: base-nobre-fade-up 1s ease 1s both;
+  }
+
+  .base-nobre-btn-hero-secondary:hover {
+    background: var(--base-nobre-bg-light);
+    border-color: var(--base-nobre-primary);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  @media (min-width: 768px) {
+    .base-nobre-btn-hero {
+      padding: 16px 28px;
+      font-size: 16px;
+      gap: 10px;
+    }
+  }
+</style>

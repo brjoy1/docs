@@ -1,0 +1,48 @@
+---
+/**
+ * Página Index - Base Nobre
+ * Página principal do site
+ */
+
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+
+const pageTitle = 'Higienização de Carpetes SP | Base Nobre - Atendimento Corporativo';
+const pageDescription = 'Higienização profissional de carpetes em São Paulo e região. Atendimento especializado para empresas com boleto faturado, pix e horários flexíveis. Mais de 15 anos de experiência.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <Hero
+      title="Higienização de Carpetes em São Paulo e Região Metropolitana"
+      subtitle="Higienização profunda de carpetes para empresas em São Paulo. Elimine manchas, odores e ácaros com atendimento ágil e padrão corporativo."
+      primaryCta={{
+        text: 'Agendar no WhatsApp',
+        icon: 'chat',
+        onClick: 'abrirChatBaseNobre()',
+        dataTrack: 'whatsapp_hero,hero'
+      }}
+      secondaryCta={{
+        text: 'Solicitar por e-mail',
+        icon: 'mail',
+        onClick: 'abrirChatBaseNobre("Gostaria de solicitar um orçamento por e-mail.", {source: "email_cta"})'
+      }}
+      highlights={[
+        { icon: 'receipt_long', text: 'Boleto faturado' },
+        { icon: 'credit_card', text: 'Pix à vista' },
+        { icon: 'schedule', text: 'Horário flexível' }
+      ]}
+      stats={[
+        { number: '+15A', label: 'Experiência' },
+        { number: 'SP+', label: 'Grande SP' },
+        { number: '5min', label: 'Resposta' }
+      ]}
+    />
+
+    <!-- Aqui você pode adicionar mais seções -->
+    <!-- <Services /> -->
+    <!-- <Testimonials /> -->
+    <!-- <Contact /> -->
+    <!-- <Footer /> -->
+  </main>
+</Layout>

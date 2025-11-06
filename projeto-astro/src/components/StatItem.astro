@@ -1,0 +1,58 @@
+---
+/**
+ * Componente StatItem - Base Nobre
+ * Item de estatística/métrica
+ */
+
+interface Props {
+  number: string;
+  label: string;
+}
+
+const { number, label } = Astro.props;
+---
+
+<div class="base-nobre-stat-item">
+  <div class="base-nobre-stat-number">{number}</div>
+  <div class="base-nobre-stat-label">{label}</div>
+</div>
+
+<style>
+  .base-nobre-stat-item {
+    text-align: center;
+    padding: 12px 8px;
+    background: rgba(244, 208, 63, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(244, 208, 63, 0.1);
+  }
+
+  .base-nobre-stat-number {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--base-nobre-gold);
+    margin-bottom: 4px;
+  }
+
+  .base-nobre-stat-label {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.2;
+    color: var(--base-nobre-muted);
+  }
+
+  @media (min-width: 768px) {
+    .base-nobre-stat-item {
+      padding: 16px;
+    }
+
+    .base-nobre-stat-number {
+      font-size: 24px;
+    }
+
+    .base-nobre-stat-label {
+      font-size: 12px;
+    }
+  }
+</style>

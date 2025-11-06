@@ -1,0 +1,63 @@
+---
+/**
+ * Componente HighlightItem - Base Nobre
+ * Item de destaque com ícone
+ */
+
+interface Props {
+  icon: string;
+  text: string;
+}
+
+const { icon, text } = Astro.props;
+---
+
+<li class="base-nobre-highlight-item">
+  <span class="material-symbols-outlined">{icon}</span>
+  {text}
+</li>
+
+<style>
+  .base-nobre-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: var(--base-nobre-bg-light);
+    border: 1px solid rgba(244, 208, 63, 0.1);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.4;
+    transition: all var(--transition-normal);
+    cursor: default;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .base-nobre-highlight-item:hover {
+    background: rgba(244, 208, 63, 0.05);
+    border-color: var(--base-nobre-primary);
+    transform: translateX(2px);
+  }
+
+  .base-nobre-highlight-item .material-symbols-outlined {
+    color: var(--base-nobre-gold);
+    font-size: 18px;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .base-nobre-highlight-item {
+      padding: 16px 18px;
+      font-size: 15px;
+      gap: 12px;
+    }
+
+    .base-nobre-highlight-item .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+</style>

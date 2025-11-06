@@ -1,0 +1,266 @@
+---
+/**
+ * Componente Hero - Base Nobre
+ * Seção hero principal com CTA e destaques
+ */
+
+import Button from './Button.astro';
+import HighlightItem from './HighlightItem.astro';
+import StatItem from './StatItem.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryCta?: {
+    text: string;
+    icon: string;
+    onClick: string;
+    dataTrack?: string;
+  };
+  secondaryCta?: {
+    text: string;
+    icon: string;
+    onClick: string;
+  };
+  highlights?: Array<{
+    icon: string;
+    text: string;
+  }>;
+  stats?: Array<{
+    number: string;
+    label: string;
+  }>;
+}
+
+const {
+  title,
+  subtitle,
+  primaryCta = {
+    text: 'Agendar no WhatsApp',
+    icon: 'chat',
+    onClick: 'abrirChatBaseNobre()',
+    dataTrack: 'whatsapp_hero,hero'
+  },
+  secondaryCta = {
+    text: 'Solicitar por e-mail',
+    icon: 'mail',
+    onClick: 'abrirChatBaseNobre()'
+  },
+  highlights = [
+    { icon: 'receipt_long', text: 'Boleto faturado' },
+    { icon: 'credit_card', text: 'Pix à vista' },
+    { icon: 'schedule', text: 'Horário flexível' }
+  ],
+  stats = [
+    { number: '+15A', label: 'Experiência' },
+    { number: 'SP+', label: 'Grande SP' },
+    { number: '5min', label: 'Resposta' }
+  ]
+} = Astro.props;
+---
+
+<section id="base-nobre-hero-section" class="base-nobre-hero-wrapper">
+  <div class="base-nobre-container">
+    <div class="base-nobre-hero-content">
+      <!-- SEÇÃO DE TEXTO -->
+      <div class="base-nobre-text-section">
+        <div class="base-nobre-accent-bar"></div>
+        <h1 class="base-nobre-main-title">{title}</h1>
+        <p class="base-nobre-subtitle">{subtitle}</p>
+
+        <div class="base-nobre-buttons">
+          <Button
+            variant="primary"
+            icon={primaryCta.icon}
+            onClick={primaryCta.onClick}
+            dataTrack={primaryCta.dataTrack}
+          >
+            {primaryCta.text}
+          </Button>
+          <Button
+            variant="secondary"
+            icon={secondaryCta.icon}
+            onClick={secondaryCta.onClick}
+          >
+            {secondaryCta.text}
+          </Button>
+        </div>
+      </div>
+
+      <!-- SEÇÃO VISUAL -->
+      <div class="base-nobre-visual-section">
+        <div class="base-nobre-surface-card">
+          <ul class="base-nobre-highlights">
+            {highlights.map(highlight => (
+              <HighlightItem icon={highlight.icon} text={highlight.text} />
+            ))}
+          </ul>
+
+          <div class="base-nobre-stats-grid">
+            {stats.map(stat => (
+              <StatItem number={stat.number} label={stat.label} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === HERO WRAPPER === */
+  .base-nobre-hero-wrapper {
+    padding: 35px 12px;
+    background:
+      radial-gradient(1000px 600px at 20% 20%, rgba(244, 208, 63, 0.14) 0%, rgba(244, 208, 63, 0.05) 50%, rgba(244, 208, 63, 0) 80%),
+      var(--base-nobre-gradient-bg);
+    color: var(--base-nobre-ink);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-secondary);
+  }
+
+  .base-nobre-hero-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(244, 208, 63, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: base-nobre-float 8s ease-in-out infinite;
+  }
+
+  /* === HERO LAYOUT === */
+  .base-nobre-hero-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .base-nobre-text-section {
+    animation: base-nobre-fade-left 1s ease;
+  }
+
+  /* === ELEMENTOS HERO === */
+  .base-nobre-accent-bar {
+    width: 104px;
+    height: 5px;
+    border-radius: var(--radius-full);
+    background: var(--base-nobre-gradient-gold);
+    margin-bottom: 24px;
+    animation: base-nobre-grow-bar 0.8s ease 0.2s both;
+    box-shadow: var(--base-nobre-shadow-sm);
+  }
+
+  .base-nobre-main-title {
+    margin: 0 0 16px;
+    font-family: var(--font-primary);
+    font-weight: 800;
+    font-size: clamp(28px, 5vw, 56px);
+    line-height: 1.2;
+    animation: base-nobre-fade-up 0.9s ease 0.4s both;
+  }
+
+  .base-nobre-subtitle {
+    margin: 0 0 20px;
+    font-weight: 500;
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.4;
+    color: var(--base-nobre-muted);
+    animation: base-nobre-fade-up 1s ease 0.6s both;
+  }
+
+  /* === BOTÕES CONTAINER === */
+  .base-nobre-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 10px 0 20px;
+  }
+
+  /* === VISUAL SECTION === */
+  .base-nobre-visual-section {
+    animation: base-nobre-fade-right 1s ease 0.6s both;
+  }
+
+  .base-nobre-surface-card {
+    background: var(--base-nobre-surface);
+    border: 1px solid var(--base-nobre-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--base-nobre-shadow-lg);
+    padding: 20px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .base-nobre-surface-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(244, 208, 63, 0.02) 0%, rgba(255, 193, 7, 0.02) 100%);
+    border-radius: var(--radius-lg);
+    pointer-events: none;
+  }
+
+  /* === HIGHLIGHTS === */
+  .base-nobre-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* === STATS GRID === */
+  .base-nobre-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  /* === RESPONSIVE === */
+  @media (min-width: 768px) {
+    .base-nobre-hero-wrapper {
+      padding: 80px 20px;
+    }
+
+    .base-nobre-hero-content {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+    }
+
+    .base-nobre-buttons {
+      gap: 16px;
+    }
+
+    .base-nobre-surface-card {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+    }
+
+    .base-nobre-highlights {
+      gap: 16px;
+    }
+
+    .base-nobre-stats-grid {
+      gap: 16px;
+      margin-top: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .base-nobre-hero-wrapper {
+      padding: 100px 20px;
+    }
+  }
+</style>
